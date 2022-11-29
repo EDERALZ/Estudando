@@ -1,9 +1,16 @@
 [
   {
-    "id": "1",
-    "Nome": "Lucas",
+    "id": "2",
+    "Nome": "Marcos",
     "Senha": "123",
-    "E_mail": "Lucas@gmail.com",
-    "Endereco": "Marechal, 225"
+    "E_mail": "Marcos@gmail.com",
+    "Endereco": "Marcos123"
+  },
+  {
+    "id": "1",
+    "Nome": "Marcelo",
+    "Senha": "123",
+    "E_mail": "Marcelo@gmail.com",
+    "Endereco": "Marcelo,2563"
   }
 ]
