@@ -1,5 +1,5 @@
 import json
-#le arquivo json com as informações que está dentro
+#leitura do arquivo json
 def ler_arquivo_json():
     return json.load(open("produto.json"))
 produtos:list = ler_arquivo_json()

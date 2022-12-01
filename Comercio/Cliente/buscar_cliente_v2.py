@@ -1,7 +1,10 @@
 import json
 #ele le os arquivos do json
-clientes:list = json.load(open("cliente.json"))
-#fazer as informações de clientes serem excluidas
+def buscar_clientes_json():
+    return json.load(open("cliente.json"))
+clientes:list = buscar_clientes_json()
+
+#buscar informacao do cliente com o id
 excliente_id = input("Informe o id que deseja alterar")
 #coletar informações e excluir no json
 encontrado = (None)
