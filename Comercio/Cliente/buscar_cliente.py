@@ -1,10 +1,9 @@
 import json
-clientes:list = json.load(open("cliente.json"))
-#cliente irá digitar o nome do produto e será puxado o valor e o id do produto
+def leitura_json():
+    json.load(open("cliente.json"))
+clientes:list = leitura_json()
 cliente_encontrar = input("Insira o nome do cliente: ")
-#fazer com que coloque o produto e o sistema puxe todas informações dele
 buscar = (None)
-#print(produtos)
 for cliente_b in clientes:
     if cliente_encontrar == cliente_b['Nome']:
         buscar = cliente_b

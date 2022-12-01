@@ -5,7 +5,7 @@ def buscar_clientes_json():
 clientes:list = buscar_clientes_json()
 
 #buscar informacao do cliente com o id
-excliente_id = input("Informe o id que deseja alterar")
+excliente_id = input("Informe o id que deseja alterar: ")
 #coletar informações e excluir no json
 encontrado = (None)
 for cliente_e in clientes:
@@ -16,8 +16,8 @@ if encontrado is None:
     print("Cliente não encontrado ou informação errada")
 else:
     #coleta os dados cadastrais
-    nome = input("Insira o nome correto do cliente: ")
-    senha = input("Informe a senha nova:")
+    nome = input("Insira novo nome: ")
+    senha = input("Informe a senha nova: ")
     e_mail = input("Digite seu e_mail: ")
     endereco = input("Informe seu endereço: ")
     cliente_id = (excliente_id)
