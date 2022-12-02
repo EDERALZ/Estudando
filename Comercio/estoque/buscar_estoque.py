@@ -5,14 +5,13 @@ print(estoques)
 estoque_encontrar = input("Insira o ID do produto ser encontrado: ")
 #fazer com que coloque o produto e o sistema puxe todas informações dele
 buscar = (None)
-#print(produtos)
 for estoque_b in estoques:
-    if estoque_encontrar == estoque_b['ID produto']:
+    if estoque_encontrar == estoque_b['id']:
         buscar = estoque_b
 
 if buscar is None:
     print("Não está em estoque")
 else:
-    print(buscar['ID produto'], "Produto encontrado", estoques)
+    print(buscar['id'], "Produto encontrado")
 
 json.dump(estoques, open("estoque.json", "w"), indent=2)

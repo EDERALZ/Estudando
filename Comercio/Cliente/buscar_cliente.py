@@ -1,7 +1,8 @@
 import json
 def leitura_json():
-    json.load(open("cliente.json"))
-clientes:list = leitura_json()
+    return json.load(open("cliente.json"))
+clientes: list = leitura_json()
+
 cliente_encontrar = input("Insira o nome do cliente: ")
 buscar = (None)
 for cliente_b in clientes:
@@ -11,6 +12,6 @@ for cliente_b in clientes:
 if buscar is None:
     print("Cliente não encontrado")
 else:
-    print("Cliente encontrado:","Seu id:",cliente_b['id'],"E_mail:",cliente_b['E_mail'])
+    print("Cliente encontrado:", "Seu id é:", cliente_b['id'])
 
 json.dump(clientes, open("cliente.json", "w"), indent=2)

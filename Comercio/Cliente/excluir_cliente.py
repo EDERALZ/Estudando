@@ -1,7 +1,7 @@
 import json
 clientes:list = json.load(open("cliente.json"))
 #fazer as informações de clientes serem excluidas
-excliente_id = input("Informe o ID à ser excluído")
+excliente_id = input("Informe o ID à ser excluído: ")
 #coletar informações e excluir no json
 encontrado = (None)
 for cliente_e in clientes:
