@@ -16,10 +16,10 @@ if encontrado is None:
     print("Cliente não encontrado ou informação errada")
 else:
     #coleta os dados cadastrais
-    nome = input("Insira novo nome: ")
-    senha = input("Informe a senha nova: ")
+    nome = input("Informe seu novo nome: ")
+    senha = input("Nova senha: ")
     e_mail = input("Digite seu e_mail: ")
-    endereco = input("Informe seu endereço: ")
+    endereco = input("Informe seu novo endereço: ")
     cliente_id = (excliente_id)
     nome_cliente = str(nome)
     senha_1 = str(senha)
