@@ -2,7 +2,7 @@ import json
 estoques:list = json.load(open("estoque.json"))
 #cliente irá digitar o nome do produto e será puxado o valor e o id do produto
 print(estoques)
-estoque_encontrar = input("Insira o ID do produto ser encontrado: ")
+estoque_encontrar = input("Insira o ID do produto a ser encontrado: ")
 #fazer com que coloque o produto e o sistema puxe todas informações dele
 buscar = (None)
 for estoque_b in estoques:
