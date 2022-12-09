@@ -38,6 +38,5 @@ else:
     estoques.append({"Quantidade": quantidade_produto, "Validade do produto": val_produto, "Centro de distribuicao":centro_de_distribuicao})
 #escrever as informações dentro arquivo json
     json.dump(estoques, open("estoque.json", "w"), indent=2)
-    json.dump(produtos, open("produto.json", "w"), indent=2)
 #mostrar na tela que foi incluido no estoque
     print("Produto incluido com sucesso")
