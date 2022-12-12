@@ -1,16 +1,31 @@
 import json
-#leitura do arquivo json de estoque
 estoques:list = json.load(open("estoque.json"))
-#leitura do arquivo json de produto
 produtos:list = json.load(open("../produtos/produto.json"))
-
-#mostrar na tela que está incluindo no estoque
 print("Programa de incluir produto no estoque ")
-#solicitar informação para usuario
+def verificar_letra(letra_digito):
+    resultado = True
+    if letra_digito < "0" or letra_digito > "9":
+        resultado = False
+    return resultado
+
+def validacao_data(val_produto):
+    data_valida = True
+    tamanho_texto = len(val_produto)
+    if tamanho_texto != 10:
+        data_valida = False
+        return data_valida
+    posicao_letra = [0,1,3,4,6,7,8,9]
+    for indice_letra in posicao_letra:
+        resultado_letra = verificar_letra(val_produto[indice_letra])
+        if resultado_letra is False:
+            data_valida = False
+    if val_produto[2] != "/":
+        data_valida = False
+    if val_produto[5] != "/":
+        data_valida = False
+    return data_valida
 procurar_informacao =  input("Informe o produto a ser encontrado: ")
 print(procurar_informacao)
-
-#novo: Verificar informação dentro do arquivo produto.json (id produto)
 buscar = (None)
 for produto_info in produtos:
     if procurar_informacao == produto_info['id']:
@@ -21,22 +36,22 @@ else:
     print("Produto encontrado com sucesso: ")
     print("ID","    ", "Nome",   "  ", "quantidade")
     print(produto_info['id'],produto_info['Nome'].rjust(10), str(produto_info['Valor']).rjust(10))
-#   poderá ter dois resultados; 1) produto existe e o programa funciona normal
-#   2; caso não exista o programa irá mostrar uma mensagem "Produto não encontrado", sistema irá parar.
-#gravar as informações dentro de variaveis
-    #produto_id = input("Digite ID do produto que deseja incluir: ")
+    #gravar as informações dentro de variaveis
     quantidade_produto = input("Informe a quantidade do produto a ser incluido: ")
     val_produto = input("Informe a validade do produto incluido: ")
-    centro_de_distribuicao = input("Informe o CDD do produto: ")
-    #id_produto = str(produto_id)
-    quant_produto = str(quantidade_produto)
-    validade_produto = str(val_produto)
-    cdd = str(centro_de_distribuicao)
-    buscar = (None)
-#adicionar informações no vetor
-    produtos.append({"Quantidade": quantidade_produto, "Validade do produto": val_produto, "Centro de distribuicao":centro_de_distribuicao})
-    estoques.append({"Quantidade": quantidade_produto, "Validade do produto": val_produto, "Centro de distribuicao":centro_de_distribuicao})
-#escrever as informações dentro arquivo json
-    json.dump(estoques, open("estoque.json", "w"), indent=2)
-#mostrar na tela que foi incluido no estoque
-    print("Produto incluido com sucesso")
+    data_valida = validacao_data(val_produto)
+    if data_valida is False:
+        print("Informação incorreta, retornando ao início")
+
+    else:
+        centro_de_distribuicao = input("Informe o CDD do produto: ")
+        quant_produto = str(quantidade_produto)
+        validade_produto = str(val_produto)
+        cdd = str(centro_de_distribuicao)
+        buscar = (None)
+        produtos.append({"Quantidade": quantidade_produto, "Validade do produto": val_produto,
+                         "Centro de distribuicao": centro_de_distribuicao})
+        estoques.append({"Quantidade": quantidade_produto, "Validade do produto": val_produto,
+                         "Centro de distribuicao": centro_de_distribuicao})
+        json.dump(estoques, open("estoque.json", "w"), indent=2)
+        print("Produto incluido com sucesso")
