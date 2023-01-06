@@ -1,0 +1,9 @@
+[
+  {
+    "id": "1",
+    "cep": "12345",
+    "imposto_estadual": 10.0,
+    "imposto_municipal": 15.0,
+    "imposto_federal": 20.0
+  }
+]

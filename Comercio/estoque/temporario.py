@@ -2,28 +2,6 @@ import json
 estoques:list = json.load(open("estoque.json"))
 produtos:list = json.load(open("../produtos/produto.json"))
 print("Programa de incluir produto no estoque ")
-def verificar_letra(letra_digito):
-    resultado = True
-    if letra_digito < "0" or letra_digito > "9":
-        resultado = False
-    return resultado
-
-def validacao_data(val_produto):
-    data_valida = True
-    tamanho_texto = len(val_produto)
-    if tamanho_texto != 10:
-        data_valida = False
-        return data_valida
-    posicao_letra = [0,1,3,4,6,7,8,9]
-    for indice_letra in posicao_letra:
-        resultado_letra = verificar_letra(val_produto[indice_letra])
-        if resultado_letra is False:
-            data_valida = False
-    if val_produto[2] != "/":
-        data_valida = False
-    if val_produto[5] != "/":
-        data_valida = False
-    return data_valida
 procurar_informacao =  input("Informe o produto a ser encontrado: ")
 print(procurar_informacao)
 buscar = (None)
@@ -39,11 +17,21 @@ else:
     #gravar as informações dentro de variaveis
     quantidade_produto = input("Informe a quantidade do produto a ser incluido: ")
     val_produto = input("Informe a validade do produto incluido: ")
-    data_valida = validacao_data(val_produto)
-    if data_valida is False:
-        print("Informação incorreta, retornando ao início")
-
+    data_dia = int(val_produto[0] + (val_produto[1]))
+    if data_dia >= 1 and data_dia <= 31:
+        print("Está correto")
+        data_mes = int(val_produto[3] + (val_produto[4]))
+        if data_mes >= 1 and data_mes <= 12:
+            print("Está correto o mes")
+            data_ano = int(val_produto[6] + (val_produto[7] + (val_produto[8] + (val_produto[9]))))
+            if data_ano >= 1 and data_ano <= 9999:
+                print("Está correto")
+            else:
+                print("O ano está incorreto")
+        else:
+            print("Está incorreto o mes")
     else:
+        print("Está incorreto")
         centro_de_distribuicao = input("Informe o CDD do produto: ")
         quant_produto = str(quantidade_produto)
         validade_produto = str(val_produto)
@@ -55,10 +43,3 @@ else:
                          "Centro de distribuicao": centro_de_distribuicao})
         json.dump(estoques, open("estoque.json", "w"), indent=2)
         print("Produto incluido com sucesso")
-
-
-
-
-#passo 1: receber a entrada, que o usuário irá informar
-#passo 2: processamento
-#passo 3 : saída; final do programa

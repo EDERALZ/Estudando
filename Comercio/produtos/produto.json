@@ -1,8 +1,14 @@
 [
   {
-    "id": "3",
-    "Nome": "cacau",
+    "id": "1",
+    "Nome": "Banana",
     "Valor": 12.5,
-    "Imagem": "asdasd"
+    "Imagem": "abcd"
+  },
+  {
+    "id": "2",
+    "Nome": "Ma\u00e7a",
+    "Valor": 5.0,
+    "Imagem": "abcdefg"
   }
 ]
