@@ -14,10 +14,54 @@ def pesquisar_centro_distribuicao(opcao):
     else:
         principal()
 
+def excluir_id_centro_distribuicao():
+    pass
+def saida_opcao_4():
+    print("ID não encontrado")
+    principal()
 
+
+def load_opcao_4():
+    edicao: list = json.load(open("centro_distribuicao.json"))
+    return edicao
+
+def encontrar_id_4(cadastro):
+    encontrar_id = (None)
+    for id_encontrado in edicao:
+        if id_encontrado == cadastro['id']:
+            encontrar_id = cadastro
+            return encontrar_id
+
+def opcao_4_remover(encontrar_id):
+    edicao.remover(encontrar_id)
+
+def dump_opcao_4(edicao):
+    json.dump(edicao, open("centro_distribuicao.json", "w"), indent=2)
+
+
+def arquivo_opcao_4(cadastro):
+    edicao = load_opcao_4()
+    encontrar_id_4(cadastro, edicao)
+    opcao_4_remover()
+    dump_opcao_4(edicao)
+    principal()
+def verificar_informacao_id(cadastro):
+    entrada_id = cadastro['id']
+    if entrada_id is True:
+        print(cadastro)
+
+    else:
+        saida_opcao_4()
+
+def excluir_entrada_centro():
+    print("Você entrou em Excluir Centro de Distribuição ")
+    entrada_id = input("Informe o ID que deseja excluir: ")
+    print(entrada_id)
+
+    verificar_informacao_id()
 def excluir_centro_distribuicao(opcao):
     if opcao == "4":
-        principal()
+        excluir_entrada_centro()
     else:
         pesquisar_centro_distribuicao(opcao)
 
