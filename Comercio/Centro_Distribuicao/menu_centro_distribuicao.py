@@ -13,23 +13,19 @@ def pesquisar_centro_distribuicao(opcao):
         verificar_pesquisar_centro(opcao)
     else:
         principal()
-
-def excluir_id_centro_distribuicao():
-    pass
 def saida_opcao_4():
     print("ID não encontrado")
     principal()
-
 
 def load_opcao_4():
     edicao: list = json.load(open("centro_distribuicao.json"))
     return edicao
 
-def encontrar_id_4(cadastro):
+def encontrar_id_4(excluir_inf):
     encontrar_id = (None)
     for id_encontrado in edicao:
-        if id_encontrado == cadastro['id']:
-            encontrar_id = cadastro
+        if id_encontrado == excluir_inf['id']:
+            encontrar_id = excluir_inf
             return encontrar_id
 
 def opcao_4_remover(encontrar_id):
@@ -37,28 +33,35 @@ def opcao_4_remover(encontrar_id):
 
 def dump_opcao_4(edicao):
     json.dump(edicao, open("centro_distribuicao.json", "w"), indent=2)
+    print("Excluído com sucesso! ")
 
 
-def arquivo_opcao_4(cadastro):
+def arquivo_opcao_4(excluir_inf,):
     edicao = load_opcao_4()
-    encontrar_id_4(cadastro, edicao)
-    opcao_4_remover()
-    dump_opcao_4(edicao)
-    principal()
-def verificar_informacao_id(cadastro):
-    entrada_id = cadastro['id']
-    if entrada_id is True:
-        print(cadastro)
-
-    else:
+    encontrar_id = encontrar_id_4(excluir_inf)
+    if encontrar_id is None:
         saida_opcao_4()
+    else:
+        opcao_4_remover(excluir_inf)
+        dump_opcao_4(edicao)
+        principal()
+
+#def verificar_informacao_id(excluir_inf):
+    #entrada_id = excluir_inf['id']
+    #if entrada_id is True:
+        #opcao_4_remover()
+    #else:
+        #saida_opcao_4()
 
 def excluir_entrada_centro():
     print("Você entrou em Excluir Centro de Distribuição ")
     entrada_id = input("Informe o ID que deseja excluir: ")
     print(entrada_id)
+    excluir_inf = {
+        "id": entrada_id
+    }
 
-    verificar_informacao_id()
+    arquivo_opcao_4(excluir_inf)
 def excluir_centro_distribuicao(opcao):
     if opcao == "4":
         excluir_entrada_centro()
