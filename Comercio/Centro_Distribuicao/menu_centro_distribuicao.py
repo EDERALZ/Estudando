@@ -1,7 +1,5 @@
 import json
 
-edicao: list = json.load(open("centro_distribuicao.json"))
-
 
 def verificar_pesquisar_centro():
     print("Você entrou na pesquisa de centro")
@@ -21,37 +19,28 @@ def load_opcao_4():
     edicao: list = json.load(open("centro_distribuicao.json"))
     return edicao
 
-def encontrar_id_4(excluir_inf):
-    encontrar_id = (None)
+def encontrar_id_4(excluir_inf, edicao):
     for id_encontrado in edicao:
-        if id_encontrado == excluir_inf['id']:
+        if id_encontrado['id'] == excluir_inf['id']:
             encontrar_id = excluir_inf
-            return encontrar_id
-
-def opcao_4_remover(encontrar_id):
-    edicao.remover(encontrar_id)
+            return id_encontrado
+def opcao_4_remover(encontrar_id, edicao):
+    edicao.remove(encontrar_id)
 
 def dump_opcao_4(edicao):
     json.dump(edicao, open("centro_distribuicao.json", "w"), indent=2)
     print("Excluído com sucesso! ")
 
 
-def arquivo_opcao_4(excluir_inf,):
+def arquivo_opcao_4(encontrar_id):
     edicao = load_opcao_4()
-    encontrar_id = encontrar_id_4(excluir_inf)
+    encontrar_id = encontrar_id_4(encontrar_id, edicao)
     if encontrar_id is None:
         saida_opcao_4()
     else:
-        opcao_4_remover(excluir_inf)
+        opcao_4_remover(encontrar_id, edicao)
         dump_opcao_4(edicao)
-        principal()
-
-#def verificar_informacao_id(excluir_inf):
-    #entrada_id = excluir_inf['id']
-    #if entrada_id is True:
-        #opcao_4_remover()
-    #else:
-        #saida_opcao_4()
+        #principal()
 
 def excluir_entrada_centro():
     print("Você entrou em Excluir Centro de Distribuição ")
@@ -194,6 +183,7 @@ def edicao_append_json(cadastro, edicao):
 
 def dump_json(edicao):
     json.dump(edicao, open("centro_distribuicao.json", "w"), indent=2)
+    print("Adicionado com sucesso! ")
 
 
 def arquivo_json(cadastro):
