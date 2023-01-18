@@ -1,16 +1,51 @@
 import json
 
+def informar_pesquisa(pesquisar_centro):
+    print(pesquisar_centro)
+    print("Busca realizada com sucesso!")
+    print("Retornando ao início")
+    principal()
+
+
+def load_pesquisar_centro(pesquisar_centro):
+    edicao: list = json.load(open("centro_distribuicao.json"))
+    pesquisar_cep = verificar_procura(pesquisar_centro, edicao)
+    verificar_pesquisa(pesquisar_cep)
+    return edicao
+
+def verificar_procura(pesquisar_centro,edicao):
+    for pesquisar_cep in edicao:
+        if pesquisar_cep['cep'] == pesquisar_centro['cep']:
+            encontrar_cep = pesquisar_centro
+            return pesquisar_cep
+
+def mensagem_erro_pesquisa():
+    print("Busca não encontrada, retornando ao início")
+    principal()
+
+def verificar_pesquisa(pesquisar_cep):
+    if pesquisar_cep is None:
+        mensagem_erro_pesquisa()
+    else:
+        informar_pesquisa(pesquisar_cep)
+
 
 def verificar_pesquisar_centro():
-    print("Você entrou na pesquisa de centro")
-    principal()
+    print("Você entou na pesquisa Centro de Distribuição")
+    solicitar_cep = input("Digite o CEP que deseja buscar")
+    pesquisar_cep = solicitar_cep
+    pesquisar_centro = {
+        "cep": pesquisar_cep
+    }
+    load_pesquisar_centro(pesquisar_centro)
+
 
 
 def pesquisar_centro_distribuicao(opcao):
     if opcao == "5":
-        verificar_pesquisar_centro(opcao)
+        verificar_pesquisar_centro()
     else:
-        principal()
+        principal(opcao)
 def saida_opcao_4():
     print("ID não encontrado")
     principal()
@@ -230,12 +265,13 @@ def incluir_novo_centro_distribuicao():
         "imposto_municipal": imposto_municipal,
         "imposto_federal": imposto_federal
     }
-    verificar_imposto_estadual(cadastro)
+    return cadastro
 
 
 def verificar_opcao_novo_centro(opcao):
     if opcao == "2":
-        incluir_novo_centro_distribuicao()
+        cadastro = incluir_novo_centro_distribuicao()
+        verificar_imposto_estadual(cadastro)
     else:
         opcao_editar_centro(opcao)
 

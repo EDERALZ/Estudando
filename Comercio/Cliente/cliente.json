@@ -5,5 +5,12 @@
     "Senha": "daniel123",
     "E_mail": "daniel@gmail.com",
     "Endereco": "daniel,243"
+  },
+  {
+    "id": "1",
+    "Nome": "eds",
+    "Senha": "123",
+    "e_mail": "eds@gmail.com",
+    "endereco": "ruaadr, 23"
   }
 ]
