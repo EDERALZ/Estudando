@@ -16,14 +16,14 @@ def incluir_cliente_v2():
         "Nome": nome,
         "Senha": senha,
         "e_mail": e_mail,
-        "endereco": cep,
+        "cep": cep,
     }
     
     return cadastro
 
 def verificar_email(clientes ,cadastro):
     if cadastro["e_mail"].find("@") > -1:
-        verificar_digito()
+        verificar_digito(cadastro['cep'])
         escrever_informacoes(clientes, cadastro)
         gravar_informacoes(clientes)
     else:
@@ -66,11 +66,12 @@ def escrever_informacoes(clientes, cadastro):
 
 def gravar_informacoes(clientes):
     json.dump(clientes, open("cliente.json", "w" ), indent=2)
+    print("Informação gravada com sucesso! ")
 
 def main():
     cadastro = incluir_cliente_v2()
     clientes = load_json()
-    saida = verificar_email(clientes, cadastro)
+    verificar_email(clientes, cadastro)
 
 main()
 
