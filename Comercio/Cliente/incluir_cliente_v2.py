@@ -23,9 +23,8 @@ def incluir_cliente_v2():
 
 def verificar_email(clientes ,cadastro):
     if cadastro["e_mail"].find("@") > -1:
-        verificar_digito(cadastro['cep'])
-        escrever_informacoes(clientes, cadastro)
-        gravar_informacoes(clientes)
+        cep_valido = verificar_digito(cadastro['cep'])
+        verificar_cep(cadastro,clientes, cep_valido)
     else:
         mensagem_erro()
 
@@ -52,8 +51,22 @@ def verificar_digito(entrada):
             saida = False
     except IndexError:
         saida = False
+    # if saida == True:
+    #     "sim"
+    # else:
+    #     mensagem_cep()
     return saida
 
+def verificar_cep(clientes, cadastro,cep_valido):
+    if cep_valido == True:
+        escrever_informacoes(clientes, cadastro)
+        gravar_informacoes(clientes)
+    else:
+        mensagem_cep()
+
+
+def mensagem_cep():
+    print("cep informado não existe, tente novamente")
 
 def mensagem_erro():
     print("Informação errada", "retornando ao início")
