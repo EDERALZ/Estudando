@@ -42,9 +42,17 @@ def validate_cpf(cpf):
     digit2 = 11 - sm % 11 if sm % 11 > 1 else 0
     return cpf[-2:] == f'{digit1}{digit2}'
 
+def mensagem_erro_cpf():
+    print("CPF INVALIDO, TENTE NOVAMENTE")
+    incluir_cliente_v2()
 
-def verificar_cpf():
-    pass
+def verificar_cpf(clientes, cadastro, cpf):
+    if cpf == True:
+        escrever_informacoes(clientes, cadastro)
+        gravar_informacoes(clientes)
+    else:
+        mensagem_erro_cpf()
+
 
 
 def validate_cnpj(cnpj):
@@ -59,8 +67,18 @@ def validate_cnpj(cnpj):
     digit2 = 11 - sm % 11 if sm % 11 > 1 else 0
     return cnpj[-2:] == f'{digit1}{digit2}'
 
-def verificar_cnpj():
-    pass
+def verificar_cnpj(clientes, cadastro, cnpj):
+    if cnpj == True:
+        escrever_informacoes(clientes, cadastro)
+        gravar_informacoes(clientes)
+    else:
+        mensagem_cnpj()
+
+
+
+def mensagem_cnpj():
+    print("CNPJ INVALIDO, TENTE NOVAMENTE ")
+    incluir_cliente_v2()
 
 def verificar_digito(entrada):
     saida = True
@@ -104,7 +122,7 @@ def mensagem_senha():
     incluir_cliente_v2()
 
 
-def verificar_senha(cadastro):
+def verificar_senha(clientes, cadastro):
     contador_minuscula = 0
     contador_maiuscula = 0
     contador_digito = 0
@@ -131,7 +149,7 @@ def verificar_senha(cadastro):
         contador += 1
 
     if contador >= 2:
-        verificar_pessoa(cadastro)
+        verificar_pessoa(clientes,cadastro)
     else:
         mensagem_senha()
 
@@ -141,23 +159,20 @@ def verificar_pessoa(clientes, cadastro):
     cadastro['Pessoa'] = pessoa
     if pessoa == 'fisica':
         guardar_cpf = input("Informe seu cpf: ")
+        cpf = validate_cpf(guardar_cpf)
+        verificar_cpf(clientes,cadastro,cpf)
         cadastro['CPF'] = guardar_cpf
         escrever_informacoes(clientes, cadastro)
         gravar_informacoes(clientes)
     elif pessoa == 'juridica':
-        guardar_cpnj = input("Informe seu cnpj: ")
-        cadastro['CNPJ'] = guardar_cpnj
+        guardar_cnpj = input("Informe seu cnpj: ")
+        cnpj = validate_cnpj(guardar_cnpj)
+        verificar_cnpj(clientes, cadastro, cnpj)
+        cadastro['CNPJ'] = guardar_cnpj
         escrever_informacoes(clientes, cadastro)
         gravar_informacoes(clientes)
     else:
         mensagem_erro_pessoa()
-
-def verificar_cpf():
-    pass
-
-
-def verificar_cnpj():
-    pass
 
 def mensagem_digito_erro():
     print("Informação errada ou incompleta")
