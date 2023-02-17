@@ -15,19 +15,13 @@ def informacoes_clientes():
     print(clientes)
     return clientes
 
-def mensagem_produto_erro():
-    print("Produto não encontrado")
-
 def procurar_informacoes_produtos(produtos, cadastro):
     if cadastro['produto_id'] in produtos is True:
         print(cadastro['produto_id'])
     else:
-        mensagem_produto_erro()
-
+        main()
 def mensagem_erro_cliente():
     print("Cliente não encontrado, tente novamente")
-
-
 
 def procurar_clientes(clientes, cadastro):
     buscar_cliente = None
@@ -39,31 +33,35 @@ def procurar_clientes(clientes, cadastro):
 
 
 
-def buscar_clientes_json(buscar_cliente, cadastro):
+def buscar_clientes_json(buscar_cliente,buscar_produto, vendas, cadastro):
     if buscar_cliente is None:
         mensagem_erro_cliente()
     else:
         identificador_cliente = cadastro['identificacao']
+        produto_decisao(buscar_produto, vendas, cadastro)
         return identificador_cliente
 
 
 def buscar_produto_identificador(produtos, cadastro):
     buscar_produto = None
     for produto_existe in produtos:
-        if produto_existe['Nome'] == cadastro['produto']:
+        if produto_existe['id'] == cadastro['produto']:
             buscar_produto = cadastro
             print("Produto encontrado: ", cadastro['produto'])
-            return buscar_produto
+    return buscar_produto
 
 
 def mensagem_erro_produto():
     print("Produto não encontrado")
 
-def produto_decisao(buscar_produto, cadastro):
+
+def produto_decisao(buscar_produto, vendas, cadastro):
     if buscar_produto is None:
         mensagem_erro_produto()
     else:
         identificador_produto = cadastro['identificacao']
+        escrever_informacoes(vendas, cadastro)
+        gravar_info(vendas)
         return identificador_produto
 
 
@@ -94,10 +92,8 @@ def main():
     clientes = informacoes_clientes()
     cadastro = solicitar_dados()
     buscar_cliente = procurar_clientes(clientes, cadastro)
-    identificador_cliente = buscar_clientes_json(buscar_cliente, cadastro)
     buscar_produto = buscar_produto_identificador(produtos,cadastro)
-    identificador_produto = produto_decisao(buscar_produto, cadastro)
-    escrever_informacoes(vendas, cadastro)
-    gravar_info(vendas)
+    identificador_cliente = buscar_clientes_json(buscar_cliente,buscar_produto, vendas, cadastro)
+    #impedir_gravar_info(identificador_cliente, identificador_produto, vendas)
 
 main()
