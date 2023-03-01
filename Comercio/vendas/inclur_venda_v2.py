@@ -2,17 +2,14 @@ import json
 
 def informacoes_vendas():
     vendas:list = json.load(open("venda.json"))
-    print(vendas)
     return vendas
 
 def informacoes_produtos():
     produtos:list = json.load(open("../produtos/produto.json", "r"))
-    print(produtos)
     return produtos
 
 def informacoes_clientes():
     clientes: list = json.load(open("../Cliente/cliente.json", "r"))
-    print(clientes)
     return clientes
 
 def procurar_informacoes_produtos(produtos, cadastro):
