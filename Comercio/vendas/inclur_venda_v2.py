@@ -94,6 +94,5 @@ def main():
     buscar_cliente = procurar_clientes(clientes, cadastro)
     buscar_produto = buscar_produto_identificador(produtos,cadastro)
     identificador_cliente = buscar_clientes_json(buscar_cliente,buscar_produto, vendas, cadastro)
-    #impedir_gravar_info(identificador_cliente, identificador_produto, vendas)
 
 main()
